@@ -1,5 +1,6 @@
 package com.bk.todoappbackend.todo.service;
 
+import com.bk.todoappbackend.todo.controller.AllTodoResponse;
 import com.bk.todoappbackend.todo.entity.Todo;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyCompleted;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
@@ -8,10 +9,12 @@ import com.bk.todoappbackend.todo.mapper.TodoMapper;
 import com.bk.todoappbackend.todo.model.CreateTodoRequest;
 import com.bk.todoappbackend.todo.model.UpdateTodoRequest;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
+import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import com.bk.todoappbackend.todo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,8 +28,14 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAll();
+    public AllTodoResponse getAllTodos() {
+        List<Todo> allTodos = todoRepository.findAll();
+        List<TodoResponse> todoResponses = new ArrayList<>();
+        allTodos.forEach(todo -> todoResponses.add(todoMapper.convertTodo2TodoResponse(todo)));
+        return AllTodoResponse.builder()
+                .data(todoResponses)
+                .todoCount(todoResponses.size())
+                .build();
     }
 
     @Override
@@ -79,7 +88,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     private void checkTodoIfAlreadyInCompleted(Todo todo) throws TodoIsAlreadyInCompleted {
-        if(!todo.isCompleted()){
+        if (!todo.isCompleted()) {
             throw new TodoIsAlreadyInCompleted(String.format("todo is already in-completed, id: %s", todo.getId()));
         }
     }

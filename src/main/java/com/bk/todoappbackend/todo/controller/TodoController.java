@@ -23,7 +23,7 @@ public class TodoController {
     }
 
     @GetMapping(path = "/")
-    public List<Todo> getAllTodos() {
+    public AllTodoResponse getAllTodos() {
         return todoService.getAllTodos();
     }
 

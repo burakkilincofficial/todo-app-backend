@@ -4,6 +4,7 @@ import com.bk.todoappbackend.todo.entity.Todo;
 import com.bk.todoappbackend.todo.model.CreateTodoRequest;
 import com.bk.todoappbackend.todo.model.UpdateTodoRequest;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
+import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +42,18 @@ public class TodoMapper {
                 .todoName(updatedTodo.getTodoName())
                 .lastUpdatedDate(updatedTodo.getLastUpdatedDate())
                 .isCompleted(updatedTodo.isCompleted())
+                .build();
+    }
+
+    public TodoResponse convertTodo2TodoResponse(Todo todo) {
+        return TodoResponse.builder()
+                .id(todo.getId())
+                .todoName(todo.getTodoName())
+                .description(todo.getDescription())
+                .completedDate(todo.getCompletedDate())
+                .targetDate(todo.getTargetDate())
+                .lastUpdatedDate(todo.getLastUpdatedDate())
+                .isCompleted(todo.isCompleted())
                 .build();
     }
 }
