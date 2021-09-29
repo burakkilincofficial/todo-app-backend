@@ -15,6 +15,7 @@ import java.util.Date;
 public class CreateTodoResponse {
     private Integer id;
     private String todoName;
+    private String userName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 }

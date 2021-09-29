@@ -6,12 +6,11 @@ import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
 import com.bk.todoappbackend.todo.exception.TodoNotFoundException;
 import com.bk.todoappbackend.todo.model.CreateTodoRequest;
 import com.bk.todoappbackend.todo.model.UpdateTodoRequest;
+import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import com.bk.todoappbackend.todo.service.TodoService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/todo")
@@ -22,22 +21,28 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @GetMapping(path = "/")
+    @GetMapping("/all")
     public AllTodoResponse getAllTodos() {
         return todoService.getAllTodos();
     }
 
-    @PostMapping(path = "/")
-    public CreateTodoResponse createNewTodo(@RequestBody CreateTodoRequest createTodoRequest) {
+    @GetMapping(value = "/user-name/{name}")
+    public AllTodoResponse getAllTodos(@PathVariable("name") String name) {
+        return todoService.getAllTodosByUsername(name);
+    }
+
+    @PostMapping("/{name}")
+    public CreateTodoResponse createNewTodo(@PathVariable String name, @RequestBody CreateTodoRequest createTodoRequest) {
+        createTodoRequest.setUserName(name);
         return todoService.createNewTodo(createTodoRequest);
     }
 
     @GetMapping(path = "/{id}")
-    public Todo getTodo(@PathVariable Integer id) throws TodoNotFoundException {
+    public Todo getTodo(@PathVariable("id") Integer id) throws TodoNotFoundException {
         return todoService.findById(id);
     }
 
-    @PutMapping(path = "/")
+    @PutMapping("")
     public UpdateTodoResponse updateTodo(@RequestBody UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException {
         return todoService.updateTodo(updateTodoRequest);
     }

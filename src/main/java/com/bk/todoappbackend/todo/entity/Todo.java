@@ -26,6 +26,9 @@ public class Todo {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "user_name")
+    private String userName;
+
     @Column(name = "is_completed")
     private boolean isCompleted;
 

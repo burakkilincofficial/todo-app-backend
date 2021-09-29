@@ -14,5 +14,6 @@ import java.util.Date;
 public class CreateTodoRequest {
     private String todoName;
     private String description;
+    private String userName;
     private Date targetDate;
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
 
     List<Todo> findAll();
+
+    List<Todo> findAllByUserName(String userName);
 }

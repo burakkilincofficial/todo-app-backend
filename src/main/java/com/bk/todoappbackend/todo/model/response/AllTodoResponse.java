@@ -1,6 +1,5 @@
-package com.bk.todoappbackend.todo.controller;
+package com.bk.todoappbackend.todo.model.response;
 
-import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AllTodoResponse {
-    private List<TodoResponse> data;
     private Integer todoCount;
+    private List<TodoResponse> data;
 }

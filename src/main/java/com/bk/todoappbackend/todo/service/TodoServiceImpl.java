@@ -1,6 +1,6 @@
 package com.bk.todoappbackend.todo.service;
 
-import com.bk.todoappbackend.todo.controller.AllTodoResponse;
+import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.entity.Todo;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyCompleted;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
@@ -15,6 +15,7 @@ import com.bk.todoappbackend.todo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -63,6 +64,7 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = findById(id);
         checkTodoIfAlreadyCompleted(todo);
         todo.setCompleted(true);
+        todo.setCompletedDate(new Date());
         todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(todo);
     }
@@ -74,6 +76,17 @@ public class TodoServiceImpl implements TodoService {
         todo.setCompleted(false);
         todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(todo);
+    }
+
+    @Override
+    public AllTodoResponse getAllTodosByUsername(String name) {
+        List<Todo> allTodosByUserName = todoRepository.findAllByUserName(name);
+        List<TodoResponse> todoResponses = new ArrayList<>();
+        allTodosByUserName.forEach(todo -> todoResponses.add(todoMapper.convertTodo2TodoResponse(todo)));
+        return AllTodoResponse.builder()
+                .data(todoResponses)
+                .todoCount(todoResponses.size())
+                .build();
     }
 
 
