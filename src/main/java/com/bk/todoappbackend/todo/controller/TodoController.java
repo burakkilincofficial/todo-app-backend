@@ -10,10 +10,12 @@ import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import com.bk.todoappbackend.todo.service.TodoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/todo")
+@RequestMapping("/v1/todos")
 public class TodoController {
     private final TodoService todoService;
 
@@ -42,9 +44,9 @@ public class TodoController {
         return todoService.findById(id);
     }
 
-    @PutMapping("")
-    public UpdateTodoResponse updateTodo(@RequestBody UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException {
-        return todoService.updateTodo(updateTodoRequest);
+    @PutMapping("/{id}")
+    public UpdateTodoResponse updateTodo(@PathVariable Integer id, @RequestBody UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException {
+        return todoService.updateTodo(updateTodoRequest, id);
     }
 
     @PostMapping(path = "/complete/{id}")
@@ -56,4 +58,11 @@ public class TodoController {
     public UpdateTodoResponse inCompleteTodo(@PathVariable Integer id) throws TodoNotFoundException, TodoIsAlreadyInCompleted {
         return todoService.inComplete(id);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deleteTodo(@PathVariable("id") Integer id) throws TodoNotFoundException {
+        todoService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

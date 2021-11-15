@@ -17,11 +17,13 @@ public interface TodoService {
 
     CreateTodoResponse createNewTodo(CreateTodoRequest createTodoRequest);
 
-    UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException;
+    UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest, Integer id) throws TodoNotFoundException;
 
     UpdateTodoResponse completeTodo(Integer id) throws TodoNotFoundException, TodoIsAlreadyCompleted;
 
     UpdateTodoResponse inComplete(Integer id) throws TodoNotFoundException, TodoIsAlreadyInCompleted;
 
     AllTodoResponse getAllTodosByUsername(String name);
+
+    void deleteById(Integer id) throws TodoNotFoundException;
 }

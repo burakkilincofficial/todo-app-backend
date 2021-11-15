@@ -52,9 +52,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException {
-        checkTodoIfExist(updateTodoRequest.getId());
-        Todo todo = todoMapper.convertUpdateTodoRequest2Todo(updateTodoRequest);
+    public UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest, Integer id) throws TodoNotFoundException {
+        checkTodoIfExist(id);
+        Todo todo = todoMapper.convertUpdateTodoRequest2Todo(updateTodoRequest, id);
         Todo updatedTodo = todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(updatedTodo);
     }
@@ -87,6 +87,12 @@ public class TodoServiceImpl implements TodoService {
                 .data(todoResponses)
                 .todoCount(todoResponses.size())
                 .build();
+    }
+
+    @Override
+    public void deleteById(Integer id) throws TodoNotFoundException {
+        findById(id);
+        todoRepository.deleteById(id);
     }
 
 

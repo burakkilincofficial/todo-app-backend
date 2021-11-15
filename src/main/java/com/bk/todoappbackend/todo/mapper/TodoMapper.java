@@ -28,13 +28,14 @@ public class TodoMapper {
                 .build();
     }
 
-    public Todo convertUpdateTodoRequest2Todo(UpdateTodoRequest updateTodoRequest) {
+    public Todo convertUpdateTodoRequest2Todo(UpdateTodoRequest updateTodoRequest, Integer id) {
         return Todo.builder()
-                .id(updateTodoRequest.getId())
+                .id(id)
                 .todoName(updateTodoRequest.getTodoName())
                 .description(updateTodoRequest.getDescription())
-                .isCompleted(updateTodoRequest.getIsCompleted())
+                .isCompleted(updateTodoRequest.getIsCompleted() != null)
                 .targetDate(updateTodoRequest.getTargetDate())
+                .userName(updateTodoRequest.getUserName())
                 .build();
     }
 

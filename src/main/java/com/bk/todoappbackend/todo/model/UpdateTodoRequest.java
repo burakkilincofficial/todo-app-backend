@@ -13,9 +13,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateTodoRequest {
-    private Integer id;
     private String todoName;
     private String description;
     private Date targetDate;
     private Boolean isCompleted;
+    private String userName;
 }
