@@ -4,7 +4,6 @@ import com.bk.todoappbackend.common.exception.ErrorDetails;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyCompleted;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
 import com.bk.todoappbackend.todo.exception.TodoNotFoundException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

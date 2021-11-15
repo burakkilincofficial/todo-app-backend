@@ -1,6 +1,5 @@
 package com.bk.todoappbackend.todo.service;
 
-import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.entity.Todo;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyCompleted;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
@@ -8,6 +7,7 @@ import com.bk.todoappbackend.todo.exception.TodoNotFoundException;
 import com.bk.todoappbackend.todo.mapper.TodoMapper;
 import com.bk.todoappbackend.todo.model.CreateTodoRequest;
 import com.bk.todoappbackend.todo.model.UpdateTodoRequest;
+import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
 import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
