@@ -7,10 +7,6 @@ dsrc/main/java/com/bk/todoappbackend/common/exception/handler/RestResponseEntity
 Osrc/main/java/com/bk/todoappbackend/todo/model/response/CreateTodoResponse.java,d\1\d11719a32dce09bb902c17b1b3d3a499cd431b04
 w
 Gsrc/test/java/com/bk/todoappbackend/TodoAppBackendApplicationTests.java,b\3\b3203bfa71ada6aa4e1bca083bc7a2fc326548f9
-u
-Esrc/main/java/com/bk/todoappbackend/common/swagger/SwaggerConfig.java,3\1\312e65800eb3e4a57b930c45829d3ccd25f02652
-q
-Asrc/main/java/com/bk/todoappbackend/common/swagger/MvcConfig.java,2\2\222cfc6d81769d4e0528816f212a3d1d97fafe80
 y
 Isrc/main/java/com/bk/todoappbackend/todo/model/response/TodoResponse.java,0\3\035107855ea323e214f141f5771e0e32674ca8bd
 :
