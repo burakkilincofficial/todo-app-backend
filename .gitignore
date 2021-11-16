@@ -63,3 +63,17 @@ target
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+
+
+.ekstazi
+.checkstyle
+test-salesforce-login.properties
+id_file
+components/camel-solr/data
+*.epoch
+.pmd
+log-camel-lsp.out
+*.code-workspace
+components/camel-cxf/activemq-data
+*.swp
+.java-version
