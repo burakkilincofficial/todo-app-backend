@@ -63,7 +63,7 @@ public class TodoServiceImpl implements TodoService {
     public UpdateTodoResponse completeTodo(Integer id) throws TodoNotFoundException, TodoIsAlreadyCompleted {
         Todo todo = findById(id);
         checkTodoIfAlreadyCompleted(todo);
-        todo.setCompleted(true);
+        todo.setIsCompleted(true);
         todo.setCompletedDate(new Date());
         todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(todo);
@@ -73,7 +73,8 @@ public class TodoServiceImpl implements TodoService {
     public UpdateTodoResponse inComplete(Integer id) throws TodoNotFoundException, TodoIsAlreadyInCompleted {
         Todo todo = findById(id);
         checkTodoIfAlreadyInCompleted(todo);
-        todo.setCompleted(false);
+        todo.setIsCompleted(false);
+        todo.setCompletedDate(null);
         todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(todo);
     }
@@ -101,13 +102,13 @@ public class TodoServiceImpl implements TodoService {
     }
 
     public void checkTodoIfAlreadyCompleted(Todo todo) throws TodoIsAlreadyCompleted {
-        if (todo.isCompleted()) {
+        if (todo.getIsCompleted()) {
             throw new TodoIsAlreadyCompleted(String.format("todo is already completed, id: %s", todo.getId()));
         }
     }
 
     private void checkTodoIfAlreadyInCompleted(Todo todo) throws TodoIsAlreadyInCompleted {
-        if (!todo.isCompleted()) {
+        if (!todo.getIsCompleted()) {
             throw new TodoIsAlreadyInCompleted(String.format("todo is already in-completed, id: %s", todo.getId()));
         }
     }

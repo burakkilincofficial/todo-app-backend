@@ -16,4 +16,5 @@ public class CreateTodoRequest {
     private String description;
     private String userName;
     private Date targetDate;
+    private Boolean isCompleted;
 }

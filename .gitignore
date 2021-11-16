@@ -58,7 +58,7 @@ lib/
 manifest.yml
 out
 overridedb.*
-target.*
+target/
 .flattened-pom.xml
 secrets.yml
 .gradletasknamecache
@@ -77,3 +77,4 @@ log-camel-lsp.out
 components/camel-cxf/activemq-data
 *.swp
 .java-version
+*.pb

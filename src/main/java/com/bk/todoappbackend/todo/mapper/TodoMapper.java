@@ -8,6 +8,8 @@ import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class TodoMapper {
     public Todo convertCreateTodoRequest2Todo(CreateTodoRequest createTodoRequest) {
@@ -16,6 +18,8 @@ public class TodoMapper {
                 .description(createTodoRequest.getDescription())
                 .targetDate(createTodoRequest.getTargetDate())
                 .userName(createTodoRequest.getUserName())
+                .isCompleted(createTodoRequest.getIsCompleted())
+                .completedDate(Boolean.TRUE.equals(createTodoRequest.getIsCompleted()) ? new Date() : null)
                 .build();
     }
 
@@ -33,9 +37,10 @@ public class TodoMapper {
                 .id(id)
                 .todoName(updateTodoRequest.getTodoName())
                 .description(updateTodoRequest.getDescription())
-                .isCompleted(updateTodoRequest.getIsCompleted() != null)
+                .isCompleted(updateTodoRequest.getIsCompleted())
                 .targetDate(updateTodoRequest.getTargetDate())
                 .userName(updateTodoRequest.getUserName())
+                .completedDate(Boolean.TRUE.equals(updateTodoRequest.getIsCompleted()) ? new Date() : null)
                 .build();
     }
 
@@ -44,7 +49,7 @@ public class TodoMapper {
                 .id(updatedTodo.getId())
                 .todoName(updatedTodo.getTodoName())
                 .lastUpdatedDate(updatedTodo.getLastUpdatedDate())
-                .isCompleted(updatedTodo.isCompleted())
+                .isCompleted(updatedTodo.getIsCompleted())
                 .userName(updatedTodo.getUserName())
                 .build();
     }
@@ -58,7 +63,7 @@ public class TodoMapper {
                 .completedDate(todo.getCompletedDate())
                 .targetDate(todo.getTargetDate())
                 .lastUpdatedDate(todo.getLastUpdatedDate())
-                .isCompleted(todo.isCompleted())
+                .isCompleted(todo.getIsCompleted())
                 .build();
     }
 }

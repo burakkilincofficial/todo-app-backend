@@ -34,7 +34,7 @@ public class Todo {
     private String userName;
 
     @Column(name = "is_completed")
-    private boolean isCompleted;
+    private Boolean isCompleted;
 
     @Column(name = "completed_date")
     private Date completedDate;
