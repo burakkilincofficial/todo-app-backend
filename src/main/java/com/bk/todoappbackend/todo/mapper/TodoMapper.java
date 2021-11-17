@@ -16,6 +16,7 @@ public class TodoMapper {
                 .description(createTodoRequest.getDescription())
                 .targetDate(createTodoRequest.getTargetDate())
                 .userName(createTodoRequest.getUserName())
+                .isCompleted(createTodoRequest.getIsCompleted())
                 .build();
     }
 
@@ -44,7 +45,7 @@ public class TodoMapper {
                 .id(updatedTodo.getId())
                 .todoName(updatedTodo.getTodoName())
                 .lastUpdatedDate(updatedTodo.getLastUpdatedDate())
-                .isCompleted(updatedTodo.isCompleted())
+                .isCompleted(updatedTodo.getIsCompleted())
                 .userName(updatedTodo.getUserName())
                 .build();
     }
@@ -58,7 +59,7 @@ public class TodoMapper {
                 .completedDate(todo.getCompletedDate())
                 .targetDate(todo.getTargetDate())
                 .lastUpdatedDate(todo.getLastUpdatedDate())
-                .isCompleted(todo.isCompleted())
+                .isCompleted(todo.getIsCompleted())
                 .build();
     }
 }

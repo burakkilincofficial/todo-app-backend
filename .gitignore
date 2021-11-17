@@ -77,3 +77,4 @@ log-camel-lsp.out
 components/camel-cxf/activemq-data
 *.swp
 .java-version
+*.pb

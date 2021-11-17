@@ -3,8 +3,6 @@
 Ssrc/main/java/com/bk/todoappbackend/helloworld/controller/HelloWorldController.java,4\c\4cc0bd545c7bd03e86a418d3a7a7c4ed748c100e
 ”
 dsrc/main/java/com/bk/todoappbackend/common/exception/handler/RestResponseEntityExceptionHandler.java,7\5\75f1029402497e5658621950dbcc2ee060d98bb5
-
-Osrc/main/java/com/bk/todoappbackend/todo/model/response/CreateTodoResponse.java,d\1\d11719a32dce09bb902c17b1b3d3a499cd431b04
 w
 Gsrc/test/java/com/bk/todoappbackend/TodoAppBackendApplicationTests.java,b\3\b3203bfa71ada6aa4e1bca083bc7a2fc326548f9
 y
