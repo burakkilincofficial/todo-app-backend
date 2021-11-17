@@ -10,13 +10,9 @@ Isrc/main/java/com/bk/todoappbackend/todo/model/response/TodoResponse.java,0\3\
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-D
-todo-app-backend.iml,9\5\95f04950050197bc035693a3cec480133345d4f3
 Ö
 Usrc/main/java/com/bk/todoappbackend/common/security/basicauth/AuthenticationBean.java,9\f\9f671f0585025ef35009dcb6a89c54bb9faeb0c2
 ê
 `src/main/java/com/bk/todoappbackend/common/security/basicauth/BasicAuthenticationController.java,0\c\0c0e265c3a1fedda1b953dde20f3d34924cfe2ea
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
