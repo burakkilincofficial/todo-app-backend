@@ -74,6 +74,7 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = findById(id);
         checkTodoIfAlreadyInCompleted(todo);
         todo.setIsCompleted(false);
+        todo.setCompletedDate(null);
         todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(todo);
     }
