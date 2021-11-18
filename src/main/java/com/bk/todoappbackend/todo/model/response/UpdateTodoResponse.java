@@ -19,4 +19,5 @@ public class UpdateTodoResponse {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdatedDate;
     private Boolean isCompleted;
+    private Date createdDate;
 }

@@ -1,4 +1,4 @@
-package com.bk.todoappbackend.common.security.basicauth;
+package basicauth;
 
 /**
  * Authentication model.

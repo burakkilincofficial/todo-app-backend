@@ -10,6 +10,7 @@ import com.bk.todoappbackend.todo.model.response.AllTodoResponse;
 import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import com.bk.todoappbackend.todo.service.TodoService;
+import com.bk.todoappbackend.user.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/todos")
+@RequestMapping("/todos")
 public class TodoController {
     private final TodoService todoService;
 
@@ -41,7 +42,7 @@ public class TodoController {
     }
 
     @PostMapping("/{name}")
-    public CreateTodoResponse createNewTodo(@PathVariable String name, @RequestBody CreateTodoRequest createTodoRequest) {
+    public CreateTodoResponse createNewTodo(@PathVariable String name, @RequestBody CreateTodoRequest createTodoRequest) throws UserNotFoundException {
         createTodoRequest.setUserName(name);
         return todoService.createNewTodo(createTodoRequest);
     }
@@ -52,7 +53,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public UpdateTodoResponse updateTodo(@PathVariable Integer id, @RequestBody UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException {
+    public UpdateTodoResponse updateTodo(@PathVariable Integer id, @RequestBody UpdateTodoRequest updateTodoRequest) throws TodoNotFoundException, UserNotFoundException {
         return todoService.updateTodo(updateTodoRequest, id);
     }
 

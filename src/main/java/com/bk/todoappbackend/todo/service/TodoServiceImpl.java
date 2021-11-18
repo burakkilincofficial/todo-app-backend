@@ -12,11 +12,13 @@ import com.bk.todoappbackend.todo.model.response.CreateTodoResponse;
 import com.bk.todoappbackend.todo.model.response.TodoResponse;
 import com.bk.todoappbackend.todo.model.response.UpdateTodoResponse;
 import com.bk.todoappbackend.todo.repository.TodoRepository;
+import com.bk.todoappbackend.user.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -45,16 +47,16 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public CreateTodoResponse createNewTodo(CreateTodoRequest createTodoRequest) {
+    public CreateTodoResponse createNewTodo(CreateTodoRequest createTodoRequest) throws UserNotFoundException {
         Todo todo = todoMapper.convertCreateTodoRequest2Todo(createTodoRequest);
         Todo savedTodo = todoRepository.save(todo);
         return todoMapper.convertTodo2CreateTodoResponse(savedTodo);
     }
 
     @Override
-    public UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest, Integer id) throws TodoNotFoundException {
-        checkTodoIfExist(id);
-        Todo todo = todoMapper.convertUpdateTodoRequest2Todo(updateTodoRequest, id);
+    public UpdateTodoResponse updateTodo(UpdateTodoRequest updateTodoRequest, Integer id) throws TodoNotFoundException, UserNotFoundException {
+        Todo todo1 = checkTodoIfExist(id);
+        Todo todo = todoMapper.convertUpdateTodoRequest2Todo(updateTodoRequest, todo1);
         Todo updatedTodo = todoRepository.save(todo);
         return todoMapper.convertTodo2UpdateTodoResponse(updatedTodo);
     }
@@ -81,7 +83,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public AllTodoResponse getAllTodosByUsername(String name) {
-        List<Todo> allTodosByUserName = todoRepository.findAllByUserName(name);
+        List<Todo> allTodosByUserName = todoRepository.findAllByUser_UserName(name);
         List<TodoResponse> todoResponses = new ArrayList<>();
         allTodosByUserName.forEach(todo -> todoResponses.add(todoMapper.convertTodo2TodoResponse(todo)));
         return AllTodoResponse.builder()

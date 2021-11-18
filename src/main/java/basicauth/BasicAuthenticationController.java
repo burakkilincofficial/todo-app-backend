@@ -1,4 +1,4 @@
-package com.bk.todoappbackend.common.security.basicauth;
+package basicauth;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

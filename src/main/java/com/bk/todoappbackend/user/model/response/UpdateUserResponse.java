@@ -1,4 +1,4 @@
-package com.bk.todoappbackend.todo.model.response;
+package com.bk.todoappbackend.user.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -8,15 +8,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTodoResponse {
+public class UpdateUserResponse {
     private Integer id;
-    private String todoName;
     private String userName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdDate;
-    private Date targetDate;
+    private Date lastUpdatedDate;
 }

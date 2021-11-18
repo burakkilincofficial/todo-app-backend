@@ -4,6 +4,9 @@ import com.bk.todoappbackend.common.exception.ErrorDetails;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyCompleted;
 import com.bk.todoappbackend.todo.exception.TodoIsAlreadyInCompleted;
 import com.bk.todoappbackend.todo.exception.TodoNotFoundException;
+import com.bk.todoappbackend.user.exception.UserNameAlreadyExistException;
+import com.bk.todoappbackend.user.exception.UserNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,21 +26,31 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(TodoIsAlreadyCompleted.class)
     public ResponseEntity<?> handleTodoIsAlreadyCompleted(Exception exception, WebRequest request) {
-        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(TodoIsAlreadyInCompleted.class)
     public ResponseEntity<?> handleTodoIsAlreadyInCompleted(Exception exception, WebRequest request) {
-        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.CONFLICT);
     }
 
-//    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
-//    protected ResponseEntity<Object> handleConflict(
-//            RuntimeException ex, WebRequest request) {
-//        String bodyOfResponse = "This should be application specific";
-//        return handleExceptionInternal(ex, bodyOfResponse,
-//                new HttpHeaders(), HttpStatus.CONFLICT, request);
-//    }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?> handleUserNotFoundException(Exception exception, WebRequest request) {
+        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNameAlreadyExistException.class)
+    public ResponseEntity<?> handleUserNameAlreadyExistException(Exception exception, WebRequest request) {
+        return new ResponseEntity<>(new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false)), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
+    protected ResponseEntity<Object> handleConflict(
+            RuntimeException ex, WebRequest request) {
+        String bodyOfResponse = "This should be application specific";
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
 //    @ExceptionHandler(value = { TodoNotFoundException.class })
