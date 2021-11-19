@@ -1,7 +1,5 @@
 package com.bk.todoappbackend.user.mapper;
 
-import com.bk.todoappbackend.todo.entity.Todo;
-import com.bk.todoappbackend.todo.service.TodoService;
 import com.bk.todoappbackend.user.entity.User;
 import com.bk.todoappbackend.user.exception.UserNotFoundException;
 import com.bk.todoappbackend.user.model.CreateUserRequest;
@@ -11,9 +9,7 @@ import com.bk.todoappbackend.user.model.response.UpdateUserResponse;
 import com.bk.todoappbackend.user.model.response.UserResponse;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * TODO Describe this class.
