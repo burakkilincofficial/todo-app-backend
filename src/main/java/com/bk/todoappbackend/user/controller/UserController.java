@@ -2,7 +2,6 @@ package com.bk.todoappbackend.user.controller;
 
 import com.bk.todoappbackend.todo.exception.TodoNotFoundException;
 import com.bk.todoappbackend.user.entity.User;
-import com.bk.todoappbackend.user.exception.UserNameAlreadyExistException;
 import com.bk.todoappbackend.user.exception.UserNotFoundException;
 import com.bk.todoappbackend.user.model.CreateUserRequest;
 import com.bk.todoappbackend.user.model.UpdateUserRequest;

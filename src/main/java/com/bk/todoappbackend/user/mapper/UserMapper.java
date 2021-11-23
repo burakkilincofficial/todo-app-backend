@@ -27,6 +27,8 @@ public class UserMapper {
                 .userName(createUserRequest.getUserName())
                 .password(createUserRequest.getPassword())
                 .surname(createUserRequest.getSurname())
+                .birthDate(createUserRequest.getBirthDate())
+                .name(createUserRequest.getName())
                 .build();
     }
 

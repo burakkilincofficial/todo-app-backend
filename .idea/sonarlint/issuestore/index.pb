@@ -25,8 +25,6 @@ Ssrc/main/java/com/bk/todoappbackend/helloworld/controller/HelloWorldController.
 Ysrc/main/java/com/bk/todoappbackend/common/security/jwtauth/resource/JwtTokenRequest.java,5\9\59d7f4fa4cc8be330cb5bc7afab6bc8bd1968eeb
 r
 Bsrc/main/java/com/bk/todoappbackend/TodoAppBackendApplication.java,f\d\fdc22c9b34d5bab7fa2dfcc33e4f89d5167f81e3
-
-Osrc/main/java/com/bk/todoappbackend/user/model/response/CreateUserResponse.java,6\5\6554d2ef3ce0ca8e9bff2999b93f5e7d3f98a05f
 }
 Msrc/main/java/com/bk/todoappbackend/todo/exception/TodoNotFoundException.java,5\3\53e2a6d3675a5ffe015197043b852ce5f441bd27
 }
