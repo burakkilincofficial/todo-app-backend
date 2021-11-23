@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @PostMapping("")
-    public CreateUserResponse createNewTodo(@RequestBody CreateUserRequest createUserRequest) throws UserNotFoundException, UserNameAlreadyExistException {
-        return userService.createNewTodo(createUserRequest);
+    public CreateUserResponse createNewUser(@RequestBody CreateUserRequest createUserRequest) throws Exception {
+        return userService.createNewUser(createUserRequest);
     }
 
     @GetMapping(path = "/{id}")

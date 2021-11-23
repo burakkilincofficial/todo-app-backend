@@ -56,6 +56,7 @@ public class UserMapper {
                 .id(updatedUser.getId())
                 .lastUpdatedDate(updatedUser.getLastUpdatedDate())
                 .userName(updatedUser.getUserName())
+                .birthDate(updatedUser.getBirthDate())
                 .build();
     }
 
@@ -64,6 +65,7 @@ public class UserMapper {
                 .id(user.getId())
                 .userName(user.getUserName())
                 .lastUpdatedDate(user.getLastUpdatedDate())
+                .birtDate(user.getBirthDate())
                 .todos(user.getTodos())
                 .build();
     }

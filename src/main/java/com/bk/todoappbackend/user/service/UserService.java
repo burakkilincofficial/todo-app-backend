@@ -17,7 +17,7 @@ import com.bk.todoappbackend.user.model.response.UpdateUserResponse;
 public interface UserService {
     AllUserResponse getAllUsers();
 
-    CreateUserResponse createNewTodo(CreateUserRequest createUserRequest) throws UserNotFoundException, UserNameAlreadyExistException;
+    CreateUserResponse createNewUser(CreateUserRequest createUserRequest) throws Exception;
 
     AllUserResponse getAllUsersByUsername(String name);
 

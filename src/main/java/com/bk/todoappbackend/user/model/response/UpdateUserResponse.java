@@ -17,4 +17,6 @@ public class UpdateUserResponse {
     private String userName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdatedDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birthDate;
 }

@@ -65,6 +65,9 @@ public class User implements Serializable {
     @Column(name = "last_updated_date")
     private Date lastUpdatedDate;
 
+    @Column(name = "birth_date")
+    private Date birthDate;
+
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

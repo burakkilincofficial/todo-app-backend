@@ -19,5 +19,7 @@ public class UserResponse {
     private String userName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdatedDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birtDate;
     private List<Todo> todos;
 }

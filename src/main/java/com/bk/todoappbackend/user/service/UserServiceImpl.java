@@ -1,5 +1,6 @@
 package com.bk.todoappbackend.user.service;
 
+import com.bk.todoappbackend.common.security.jwtauth.JwtInMemoryUserDetailsService;
 import com.bk.todoappbackend.user.entity.User;
 import com.bk.todoappbackend.user.exception.UserNameAlreadyExistException;
 import com.bk.todoappbackend.user.exception.UserNotFoundException;
@@ -11,6 +12,7 @@ import com.bk.todoappbackend.user.model.response.CreateUserResponse;
 import com.bk.todoappbackend.user.model.response.UpdateUserResponse;
 import com.bk.todoappbackend.user.model.response.UserResponse;
 import com.bk.todoappbackend.user.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,9 +30,15 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    private final JwtInMemoryUserDetailsService jwtInMemoryUserDetailsService;
+
+    private final BCryptPasswordEncoder encoder;
+
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, JwtInMemoryUserDetailsService jwtInMemoryUserDetailsService, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
+        this.encoder = encoder;
     }
 
     @Override
@@ -45,16 +53,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public CreateUserResponse createNewTodo(CreateUserRequest createUserRequest) throws UserNameAlreadyExistException {
+    public CreateUserResponse createNewUser(CreateUserRequest createUserRequest) throws Exception {
         checkUserNameIfExist(createUserRequest.getUserName());
         User user = userMapper.convertCreateUserRequest2User(createUserRequest);
         User savedUser = userRepository.save(user);
+
+        if (!addNewUser2AuthenticatedUsers(createUserRequest)) {
+            throw new Exception("There is while creating new user, try again later!");
+        }
+
         return userMapper.convertUser2CreateUserResponse(savedUser);
+    }
+
+    private boolean addNewUser2AuthenticatedUsers(CreateUserRequest createUserRequest) {
+        String encodeString = encoder.encode(createUserRequest.getPassword());
+        return jwtInMemoryUserDetailsService.addUserToAuthenticatedUsers(createUserRequest.getUserName(), encodeString);
     }
 
     private void checkUserNameIfExist(String userName) throws UserNameAlreadyExistException {
         User byUserName = userRepository.findByUserName(userName);
-        if(byUserName!=null){
+        if (byUserName != null) {
             throw new UserNameAlreadyExistException(String.format("user name '%s' already exists, please select new one", userName));
         }
     }
@@ -98,7 +116,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Integer id) throws  UserNotFoundException {
+    public void deleteById(Integer id) throws UserNotFoundException {
         findById(id);
         userRepository.deleteById(id);
     }
