@@ -24,7 +24,7 @@ import java.util.Objects;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(origins="http://localhost:8081/")
 public class JwtAuthenticationRestController {
 
     @Value("${jwt.http.request.header}")
